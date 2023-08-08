@@ -1,0 +1,19 @@
+
+.tags__tag {
+  all: unset;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: var(--color-tag);
+  width: fit-content;
+}
+
+.tags__tag.active {
+  background-color: var(--color-selected-tag);
+}
+
+.tags__container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+}
