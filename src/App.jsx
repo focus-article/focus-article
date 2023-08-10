@@ -1,21 +1,28 @@
 import {useEffect, useState} from 'react';
 import {getData} from './article.mock.js';
 import './App.css'
-import {Tags} from './Tag/Tag.jsx';
 import {Articles} from './Article/Article.jsx';
+import {Header} from './Header/Header.jsx';
 
 function App() {
   const [{articles, tags}, setData] = useState([]);
   const [selected, setSelected] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [state, setState] = useState('loading');
 
   useEffect(() => {
     getData().then(data => {
-      setData({
-        ...data,
-        articles: data.articles.map(a => ({...a, show: true})),
-      });
-    }).finally(() => setLoading(false));
+      const articles = data.articles.map(a => ({...a, show: true}))
+      if(articles.length > 0) {
+        setData({
+          ...data,
+          articles,
+        });
+      } else {
+        setState('empty');
+      }
+    })
+      .finally(() => setState('loaded'))
+      .catch(() => setState('error'))
   }, []);
 
   const changeActiveInTag = (tag) => {
@@ -41,20 +48,24 @@ function App() {
     }
   }, [selected]);
 
-  if(loading) {
+  if(state === 'loading') {
     return <div>Loading...</div>
+  }
+
+  if(state === 'error') {
+    return <div>Error...</div>
   }
 
   return (
     <>
-      <div>
-        <header>Minimal Article</header>
-        <Tags
+      <div className="app">
+        <Header />
+        <Articles
+          articles={articles.filter(a => a.show)}
+          changeActiveInTag={changeActiveInTag}
           tags={tags}
-          onClick={changeActiveInTag}
           selected={selected}
         />
-        <Articles articles={articles.filter(a => a.show)} />
       </div>
     </>
   )
