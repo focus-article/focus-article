@@ -1,7 +1,8 @@
 import './Tag.css';
 
-export const Tag = ({description, onClick, isSelected}) => (
+export const Tag = ({description, onClick, isSelected, tabIndex}) => (
   <button
+    tabIndex={tabIndex}
     className={isSelected ? 'tags__tag active' : 'tags__tag'}
     onClick={onClick}
   >{description}</button>
