@@ -7,7 +7,8 @@ export const getData = () => Promise.resolve({
       "tags": ["Artificial Intelligence", "Healthcare", "Machine Learning"],
       "publicationDate": "2023-07-15T10:30:00Z",
       "readTime": 8,
-      "description": "Discover how AI is transforming healthcare with advanced diagnostics and personalized treatment options."
+      "description": "Discover how AI is transforming healthcare with advanced diagnostics and personalized treatment options.",
+      "url": "https://www.smashingmagazine.com/2010/04/css-specificity-and-inheritance/?utm_source=pocket_saves",
     },
     {
       "title": "Exploring the Mysteries of Black Holes",
@@ -16,7 +17,8 @@ export const getData = () => Promise.resolve({
       "tags": ["Astronomy", "Astrophysics", "Black Holes"],
       "publicationDate": "2023-07-20T09:15:00Z",
       "readTime": 6,
-      "description": "Delve into the fascinating world of black holes and their role in the cosmos."
+      "description": "Delve into the fascinating world of black holes and their role in the cosmos.",
+      "url": "https://www.smashingmagazine.com/2010/04/css-specificity-and-inheritance/?utm_source=pocket_saves",
     },
     {
       "title": "The Future of Electric Vehicles: Advancements and Challenges",
@@ -25,7 +27,8 @@ export const getData = () => Promise.resolve({
       "tags": ["Electric Vehicles", "Green Technology", "Sustainability"],
       "publicationDate": "2023-07-18T12:45:00Z",
       "readTime": 5,
-      "description": "Learn about the latest developments in electric vehicles and the obstacles to mass adoption."
+      "description": "Learn about the latest developments in electric vehicles and the obstacles to mass adoption.",
+      "url": "https://www.smashingmagazine.com/2010/04/css-specificity-and-inheritance/?utm_source=pocket_saves",
     },
     {
       "title": "The Art of Mindfulness: Enhancing Mental Well-being",
@@ -34,7 +37,8 @@ export const getData = () => Promise.resolve({
       "tags": ["Mindfulness", "Mental Health", "Well-being"],
       "publicationDate": "2023-07-22T14:20:00Z",
       "readTime": 7,
-      "description": "Explore the practice of mindfulness and its positive effects on mental health and overall well-being."
+      "description": "Explore the practice of mindfulness and its positive effects on mental health and overall well-being.",
+      "url": "https://www.smashingmagazine.com/2010/04/css-specificity-and-inheritance/?utm_source=pocket_saves",
     },
     {
       "title": "The Rise of Cryptocurrencies: A New Financial Frontier",
@@ -43,7 +47,8 @@ export const getData = () => Promise.resolve({
       "tags": ["Cryptocurrencies", "Blockchain", "Finance"],
       "publicationDate": "2023-07-17T08:10:00Z",
       "readTime": 9,
-      "description": "An in-depth look at the revolutionary impact of cryptocurrencies on the global financial landscape."
+      "description": "An in-depth look at the revolutionary impact of cryptocurrencies on the global financial landscape.",
+      "url": "https://www.smashingmagazine.com/2010/04/css-specificity-and-inheritance/?utm_source=pocket_saves",
     },
     {
       "title": "Exploring Ancient Civilizations: Unraveling the Secrets of the Past",
@@ -52,7 +57,8 @@ export const getData = () => Promise.resolve({
       "tags": ["History", "Archaeology", "Ancient Civilizations"],
       "publicationDate": "2023-07-19T11:00:00Z",
       "readTime": 6,
-      "description": "Journey through time to uncover the mysteries and achievements of ancient civilizations."
+      "description": "Journey through time to uncover the mysteries and achievements of ancient civilizations.",
+      "url": "https://www.smashingmagazine.com/2010/04/css-specificity-and-inheritance/?utm_source=pocket_saves",
     },
     {
       "title": "The Beauty of Underwater Photography: Capturing Marine Life",
@@ -61,7 +67,8 @@ export const getData = () => Promise.resolve({
       "tags": ["Photography", "Marine Life", "Nature"],
       "publicationDate": "2023-07-23T16:00:00Z",
       "readTime": 4,
-      "description": "Dive into the mesmerizing world of underwater photography and the wonders of the ocean."
+      "description": "Dive into the mesmerizing world of underwater photography and the wonders of the ocean.",
+      "url": "https://www.smashingmagazine.com/2010/04/css-specificity-and-inheritance/?utm_source=pocket_saves",
     },
     {
       "title": "The Science Behind Climate Change: Causes and Solutions",
@@ -70,7 +77,8 @@ export const getData = () => Promise.resolve({
       "tags": ["Climate Change", "Environment", "Sustainability"],
       "publicationDate": "2023-07-21T13:30:00Z",
       "readTime": 8,
-      "description": "An informative analysis of the science, impacts, and strategies to address climate change."
+      "description": "An informative analysis of the science, impacts, and strategies to address climate change.",
+      "url": "https://www.smashingmagazine.com/2010/04/css-specificity-and-inheritance/?utm_source=pocket_saves",
     },
     {
       "title": "Beyond Mars: Human Exploration of Outer Planets",
@@ -79,7 +87,8 @@ export const getData = () => Promise.resolve({
       "tags": ["Space Exploration", "Planets", "Astronomy"],
       "publicationDate": "2023-07-16T10:00:00Z",
       "readTime": 7,
-      "description": "Unraveling the possibilities of sending human missions to explore the distant planets of our solar system."
+      "description": "Unraveling the possibilities of sending human missions to explore the distant planets of our solar system.",
+      "url": "https://www.smashingmagazine.com/2010/04/css-specificity-and-inheritance/?utm_source=pocket_saves",
     },
     {
       "title": "The Art of Sustainable Architecture: Designing for a Greener Future",
@@ -88,7 +97,8 @@ export const getData = () => Promise.resolve({
       "tags": ["Architecture", "Sustainability", "Green Building"],
       "publicationDate": "2023-07-24T15:45:00Z",
       "readTime": 6,
-      "description": "A deep dive into the principles and innovations of sustainable architecture for a more eco-friendly world."
+      "description": "A deep dive into the principles and innovations of sustainable architecture for a more eco-friendly world.",
+      "url": "https://www.smashingmagazine.com/2010/04/css-specificity-and-inheritance/?utm_source=pocket_saves",
     }
   ],
   tags: [
