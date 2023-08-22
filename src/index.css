@@ -5,8 +5,6 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -18,6 +16,10 @@
   --color-selected-tag: #73628A;
   --color-border: rgba(205, 205, 205, 0.13);
   --color-hover: #646cff;
+}
+
+html, body {
+  background-color: #242424;
 }
 
 a {
