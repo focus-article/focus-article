@@ -3,11 +3,14 @@ import {getData} from './article.mock.js';
 import './App.css'
 import {Articles} from './Article/Article.jsx';
 import {Header} from './Header/Header.jsx';
+import {NewArticle} from './NewArticle/NewArticle.jsx';
+import {Menu} from './Menu/Menu.jsx';
 
 function App() {
   const [{articles, tags}, setData] = useState([]);
   const [selected, setSelected] = useState([]);
   const [state, setState] = useState('loading');
+  const [route, setRoute] = useState('home');
 
   useEffect(() => {
     getData().then(data => {
@@ -59,13 +62,26 @@ function App() {
   return (
     <>
       <div className="app">
-        <Header />
-        <Articles
-          articles={articles.filter(a => a.show)}
-          changeActiveInTag={changeActiveInTag}
-          tags={tags}
-          selected={selected}
+        <Header
+          onClickMenu={() => setRoute('menu')}
+          onClickNew={() => setRoute('new_article')}
         />
+        {
+          route === 'home' && (
+            <Articles
+              articles={articles.filter(a => a.show)}
+              changeActiveInTag={changeActiveInTag}
+              tags={tags}
+              selected={selected}
+            />
+          )
+        }
+        {
+          route === 'menu' && <Menu onClose={() => setRoute('home')} />
+        }
+        {
+          route === 'new_article' && <NewArticle onClose={() => setRoute('home')} />
+        }
       </div>
     </>
   )

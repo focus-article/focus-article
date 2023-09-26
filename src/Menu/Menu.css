@@ -1,0 +1,9 @@
+
+.menu {
+  margin-top: var(--margin-page);
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+  }
+}

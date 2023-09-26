@@ -17,6 +17,8 @@
   --color-border: rgba(205, 205, 205, 0.13);
   --color-hover: #646cff;
   --color-background: #242424;
+
+  --margin-page: 20px;
 }
 
 /* Valores para quando o usuário prefere o tema claro */

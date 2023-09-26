@@ -11,7 +11,7 @@
 }
 
 .articles {
-  margin-top: 20px;
+  margin-top: var(--margin-page);
 
   .header {
     display: flex;
