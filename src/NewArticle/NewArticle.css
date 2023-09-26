@@ -5,4 +5,17 @@
     display: flex;
     justify-content: space-between;
   }
+
+  .body form {
+    display: flex;
+    gap: 5px;
+  }
+
+  .body form input {
+    width: 100%;
+  }
+
+  .body form label {
+    display: none;
+  }
 }

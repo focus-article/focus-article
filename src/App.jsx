@@ -80,7 +80,23 @@ function App() {
           route === 'menu' && <Menu onClose={() => setRoute('home')} />
         }
         {
-          route === 'new_article' && <NewArticle onClose={() => setRoute('home')} />
+          route === 'new_article' && (
+            <NewArticle
+              onClose={() => setRoute('home')}
+              onSave={(article) => {
+                const newData = {
+                  tags: {...tags},
+                  articles: [
+                    ...articles,
+                    {...article, show: true}
+                  ],
+                };
+                console.log(newData);
+                setData(newData)
+                setRoute('home');
+              }}
+            />
+          )
         }
       </div>
     </>

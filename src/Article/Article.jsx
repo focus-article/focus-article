@@ -138,7 +138,7 @@ export const Articles = ({ articles, changeActiveInTag, tags, selected }) => {
       <div className="list">
         {reorderedArticles.map((article, index) => (
           <div
-            key={article.id}
+            key={article.url}
           >
             <ArticleCard
               {...article}
