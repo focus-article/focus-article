@@ -1,8 +1,22 @@
 .header {
   &.container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-direction: row;
     align-items: center;
+  }
+
+  .presentation {
+    --gradient: linear-gradient(-90deg,#adfbda 0,#35c3ff 30%,#fda399 50%,#76d880 70%,#ebf38b 90%,#adfbda 100%);
+    font-size: 2rem;
+    background-image: var(--gradient,#fff);
+    background-size: 100%;
+    background-repeat: repeat;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+    filter: drop-shadow(0 0 2rem #000);
+    text-shadow: none!important;
   }
 }

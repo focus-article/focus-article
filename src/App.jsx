@@ -1,5 +1,4 @@
 import {useEffect, useState} from 'react';
-import {getData} from './article.mock.js';
 import './App.css'
 import {Articles} from './Article/Article.jsx';
 import {Header} from './Header/Header.jsx';
@@ -7,94 +6,19 @@ import {NewArticle} from './NewArticle/NewArticle.jsx';
 import {Menu} from './Menu/Menu.jsx';
 
 function App() {
-  const [{articles, tags}, setData] = useState([]);
-  const [selected, setSelected] = useState([]);
-  const [state, setState] = useState('loading');
   const [route, setRoute] = useState('home');
-
-  useEffect(() => {
-    getData().then(data => {
-      const articles = data.articles.map(a => ({...a, show: true}))
-      if(articles.length > 0) {
-        setData({
-          ...data,
-          articles,
-        });
-      } else {
-        setState('empty');
-      }
-    })
-      .finally(() => setState('loaded'))
-      .catch(() => setState('error'))
-  }, []);
-
-  const changeActiveInTag = (tag) => {
-    const alreadHere = selected.some(s => s === tag);
-    if(!alreadHere) {
-      setSelected(state => [...state, tag])
-    } else {
-      setSelected(state => [...state.filter(s => s !== tag)])
-    }
-  }
-
-  useEffect(() => {
-    if(selected.length) {
-      setData({
-        tags: [...tags],
-        articles: [
-          ...articles.map(a => ({
-            ...a,
-            show: a.tags?.some(t => selected.includes(t)),
-          }))
-        ]
-      });
-    }
-  }, [selected]);
-
-  if(state === 'loading') {
-    return <div>Loading...</div>
-  }
-
-  if(state === 'error') {
-    return <div>Error...</div>
-  }
 
   return (
     <>
       <div className="app">
-        <Header
-          onClickMenu={() => setRoute('menu')}
-          onClickNew={() => setRoute('new_article')}
-        />
-        {
-          route === 'home' && (
-            <Articles
-              articles={articles.filter(a => a.show)}
-              changeActiveInTag={changeActiveInTag}
-              tags={tags}
-              selected={selected}
-            />
-          )
-        }
-        {
-          route === 'menu' && <Menu onClose={() => setRoute('home')} />
-        }
+        <Header />
+        {route === 'home' && <Articles onClickNew={() => setRoute('new_article')} />}
+        {route === 'menu' && <Menu onClose={() => setRoute('home')} />}
         {
           route === 'new_article' && (
             <NewArticle
               onClose={() => setRoute('home')}
-              onSave={(article) => {
-                const newData = {
-                  tags: {...tags},
-                  articles: [
-                    ...articles,
-                    {...article, show: true}
-                  ],
-                };
-                console.log(newData);
-                setData(newData)
-                setRoute('home');
-              }}
+              onChange={() => setRoute('home')}
             />
           )
         }

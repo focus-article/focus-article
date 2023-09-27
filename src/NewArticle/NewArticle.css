@@ -4,6 +4,7 @@
   .header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
 
   .body form {
@@ -18,4 +19,30 @@
   .body form label {
     display: none;
   }
+
+  .info {
+    & button {
+      width: fit-content;
+      margin: 0 auto;
+      padding: 0 10px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      gap: 5px;
+    }
+  }
+}
+
+table {
+  margin-top: var(--margin-page);
+  margin-bottom: var(--margin-page);
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
 }

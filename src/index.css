@@ -21,6 +21,10 @@
   --margin-page: 20px;
 }
 
+h3 {
+  font-size: 1.5rem;
+}
+
 /* Valores para quando o usuário prefere o tema claro */
 @media (prefers-color-scheme: light) {
   :root {
