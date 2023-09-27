@@ -30,31 +30,43 @@
     row-gap: 15px;
 
     .card {
+
       border: 1px solid var(--color-border);
       transition: all 0.3s ease-in-out;
       padding: 20px;
-      border-radius: 25px;
+      border-radius: 5px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      width: 425px;
+
+      width: 465px;
+
       color: black;
+
       /*transition: all 0.3s;*/
       /*animation: scaleInOut 0.5s forwards;*/
 
-
-      &:hover {
-        border-color: var(--color-hover);
+      @media (max-width: 970px) {
+        width: 100%;
       }
 
-      &:focus,
-      &:focus-within {
-        outline: 4px auto var(--color-hover);
-      }
+      /*&:hover {*/
+      /*  border-color: var(--color-hover);*/
+      /*}*/
+
+      /*&:focus,*/
+      /*&:focus-within {*/
+      /*  outline: 4px auto var(--color-hover);*/
+      /*}*/
 
       .title {
-        font-size: 1.5rem;
+        font-size: 1rem;
+        text-align: initial;
         margin-bottom: 10px;
-        text-align: center;
         color: var(--primary-color);
+
+        &:hover {
+          cursor: pointer;
+          text-decoration: underline;
+        }
       }
 
       .tags {
