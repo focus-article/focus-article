@@ -21,14 +21,25 @@
   }
 
   .info {
-    & button {
-      width: fit-content;
-      margin: 0 auto;
-      padding: 0 10px;
-      border-radius: 5px;
+    & form {
       display: flex;
-      justify-content: space-between;
-      gap: 5px;
+      flex-direction: column;
+
+      & button {
+        width: fit-content;
+        margin: 0 auto;
+        padding: 0 10px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        gap: 5px;
+      }
+    }
+  }
+
+  .table_values {
+    & input {
+      width: 100%;
     }
   }
 }

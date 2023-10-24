@@ -46,6 +46,7 @@ h3 {
 html, body {
   transition: background-color var(--transition-velocity) ease-in-out;
   background-color: var(--color-background);
+  height: 100%;
 }
 
 a {

@@ -24,10 +24,22 @@ export const NewArticle = ({onClose, onChange}) => {
       .catch(() => setState('error'))
   }
 
-  const handleOnSave = async () => {
-    await save(data);
+  const handleOnSave = async (event) => {
+    event.preventDefault();
+    await save({
+      image: event.target.image.value,
+      title: event.target.title.value,
+      author: event.target.author.value,
+      tags: event.target.tags.value,
+      publicationDate: event.target.publicationDate.value,
+      readTime: event.target.readTime.value,
+      description: event.target.description.value,
+      url: event.target.url.value,
+    });
     onChange();
   }
+
+  const isDisabledInput = (url) => ['url'].some(i => i === url);
 
   return (
     <div className="new_article">
@@ -54,22 +66,24 @@ export const NewArticle = ({onClose, onChange}) => {
         {
           state === 'loaded' && (
             <div className="info">
-              <table>
-                <tr>
-                  <td>Key</td>
-                  <td>Value</td>
-                </tr>
-                {Object.keys(data).map(key => (
+              <form onSubmit={handleOnSave}>
+                <table>
                   <tr>
-                    <td>{key}</td>
-                    <td>{data[key]}</td>
+                    <td>Key</td>
+                    <td>Value</td>
                   </tr>
-                ))}
-              </table>
-              <button onClick={handleOnSave}>
-                Save Article
-                <svg className="icon" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V173.3c0-17-6.7-33.3-18.7-45.3L352 50.7C340 38.7 323.7 32 306.7 32H64zm0 96c0-17.7 14.3-32 32-32H288c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V128zM224 288a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/></svg>
-              </button>
+                  {Object.keys(data).map(key => (
+                    <tr className="table_values" key={key}>
+                      <td>{key}</td>
+                      <td><input type="text" name={key} value={data[key]} disabled={isDisabledInput(key)}/></td>
+                    </tr>
+                  ))}
+                </table>
+                <button type="submit">
+                  Save Article
+                  <svg className="icon" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V173.3c0-17-6.7-33.3-18.7-45.3L352 50.7C340 38.7 323.7 32 306.7 32H64zm0 96c0-17.7 14.3-32 32-32H288c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V128zM224 288a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/></svg>
+                </button>
+              </form>
             </div>
           )
         }
