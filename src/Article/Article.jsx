@@ -120,6 +120,11 @@ export const Articles = ({ changeActiveInTag, selected, onChange, onClickNew }) 
       await load();
   }
 
+  const handleOnChangeTags = async (id, tags) => {
+        await updateArticle(id, {tags});
+        await load();
+    }
+
   if(state === 'loading') {
     return <div>Loading...</div>
   }
@@ -152,6 +157,7 @@ export const Articles = ({ changeActiveInTag, selected, onChange, onClickNew }) 
             onRemove={() => handleOnRemove(article.id)}
             onClickFavorite={() => handleOnFavorite(article.id, article.favorite)}
             onClickCheck={() => handleOnClickCheck(article.id, article.status)}
+            onChangeTags={(tags) => handleOnChangeTags(article.id, tags)}
           />
         ))}
       </div>
