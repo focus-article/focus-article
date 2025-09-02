@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import './App.css'
 import {Articles} from './Article/Article.jsx';
 import {Header} from './Header/Header.jsx';

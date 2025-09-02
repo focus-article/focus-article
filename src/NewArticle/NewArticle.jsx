@@ -1,6 +1,6 @@
 import React from 'react';
 import './NewArticle.css';
-import {save} from '../Service/Service.js';
+import {saveArticle} from '../Service/Service.js';
 
 export const NewArticle = ({onClose, onChange}) => {
   const [state, setState] = React.useState();
@@ -14,7 +14,6 @@ export const NewArticle = ({onClose, onChange}) => {
       return;
     }
 
-    setState('loading');
     fetch(`http://localhost:3000/?url=${url}`)
       .then(res => res.json())
       .then((data) => {
@@ -22,19 +21,21 @@ export const NewArticle = ({onClose, onChange}) => {
         setState('loaded');
       })
       .catch(() => setState('error'))
+
   }
 
   const handleOnSave = async (event) => {
     event.preventDefault();
-    await save({
-      image: event.target.image.value,
-      title: event.target.title.value,
-      author: event.target.author.value,
-      tags: event.target.tags.value,
-      publicationDate: event.target.publicationDate.value,
-      readTime: event.target.readTime.value,
-      description: event.target.description.value,
-      url: event.target.url.value,
+    await saveArticle({
+        title: event.target.title.value,
+        url: event.target.url.value,
+        tags: event.target.tags.value,
+        status: 'unread',
+        author: event.target.author.value,
+        image: event.target.image.value,
+        publicationDate: event.target.publicationDate.value,
+        readTime: +event.target.readTime?.value,
+        description: event.target.description.value,
     });
     onChange();
   }

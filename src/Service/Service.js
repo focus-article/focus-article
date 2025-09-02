@@ -1,28 +1,25 @@
+import axios from 'axios';
 
-const getData = () => {
-  const data = localStorage.getItem('articles');
-  if(!data) return [];
-  const json = JSON.parse(data);
-  return json;
+export const getArticles = (params) => {
+    return axios
+        .get('http://localhost:3001/articles?size=-1', { params })
+        .then(res => res.data?.data);
 }
 
-const setData = (data) => {
-  localStorage.setItem('articles', JSON.stringify(data));
+export const saveArticle = (article) => {
+    return axios
+      .post('http://localhost:3001/articles', article)
+      .then(res => res.data);
 }
 
-export const save = async (article) => {
-  const db = getData();
-  setData([
-    article,
-    ...db
-  ]);
+export const updateArticle = (id, changes) => {
+    return axios
+        .patch(`http://localhost:3001/articles/${id}`, changes)
+        .then(res => res.data);
 }
 
-export const list = async () => {
-  return getData();
-}
-
-export const remove = async (url) => {
-  const db = getData();
-  setData(db?.filter(article => article.url !== url));
+export const remove = (id) => {
+    return axios
+        .delete(`http://localhost:3001/articles/${id}`)
+        .then(res => res.data);
 }
