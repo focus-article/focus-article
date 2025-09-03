@@ -1,5 +1,16 @@
 .new_article {
   margin-top: var(--margin-page);
+  width: 100%;
+
+  input {
+      border-radius: 5px;
+      border: 1px solid var(--color-border);
+      padding: 5px;
+  }
+
+    table {
+        border: 1px solid var(--color-border);
+    }
 
   .header {
     display: flex;
@@ -9,7 +20,7 @@
 
   .body form {
     display: flex;
-    gap: 5px;
+      gap: 15px;
   }
 
   .body form input {
