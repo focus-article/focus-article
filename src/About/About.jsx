@@ -9,4 +9,4 @@ export const About = () => (
       <li>Keyboard Navegation Friendly</li>
     </ul>
   </div>
-)
+);

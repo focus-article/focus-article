@@ -1,21 +1,23 @@
-import './Tag.css';
+import "./Tag.css";
 
-export const Tag = ({description, onClick, isSelected, tabIndex}) => (
+export const Tag = ({ description, onClick, isSelected, tabIndex }) => (
   <button
     tabIndex={tabIndex}
-    className={isSelected ? 'tags__tag active' : 'tags__tag'}
+    className={isSelected ? "tags__tag active" : "tags__tag"}
     onClick={onClick}
-  >{description}</button>
-)
+  >
+    {description}
+  </button>
+);
 
-export const Tags = ({tags, onClick, selected}) => (
+export const Tags = ({ tags, onClick, selected }) => (
   <div className="tags__container">
-    {
-      tags.map(tag => <Tag
+    {tags.map((tag) => (
+      <Tag
         description={tag}
         onClick={() => onClick(tag)}
-        isSelected={selected.some(s => s === tag)}
-      />)
-    }
+        isSelected={selected.some((s) => s === tag)}
+      />
+    ))}
   </div>
-)
+);
