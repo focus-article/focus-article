@@ -24,9 +24,9 @@ export const ArticleCard = ({
 
   const handleOnSubmitNewTag = (event) => {
     event.preventDefault();
-    const newTags = event?.currentTarget?.tags?.value?.trim();
+    const newTags = event?.currentTarget?.tags?.value?.trim()?.split(',');
     setNewInputVisible(false);
-    onChangeTags([tags?.join(",") + newTags].join(","));
+    onChangeTags([...tags, ...newTags].join("|"));
   };
 
   const handleOnClickRemoveTag = (tag) => {
