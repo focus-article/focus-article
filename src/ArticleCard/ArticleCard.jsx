@@ -26,11 +26,12 @@ export const ArticleCard = ({
     event.preventDefault();
     const newTags = event?.currentTarget?.tags?.value?.trim()?.split(',');
     setNewInputVisible(false);
-    onChangeTags([...tags, ...newTags].join("|"));
+    const tagsToSend = [...tags, ...newTags].join("|");
+    onChangeTags(tagsToSend);
   };
 
   const handleOnClickRemoveTag = (tag) => {
-    onChangeTags(tags?.filter((_tag) => _tag !== tag)?.join(","));
+    onChangeTags(tags?.filter((_tag) => _tag !== tag)?.join("|"));
   };
 
   return (
