@@ -6,7 +6,7 @@
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-    width: 465px;
+    width: 450px;
 
     color: black;
 
@@ -24,10 +24,6 @@
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
-    }
-
-    @media (max-width: 970px) {
-      width: 100%;
     }
 
     /*&:hover {*/
