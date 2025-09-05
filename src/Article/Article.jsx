@@ -112,23 +112,49 @@ export const Articles = ({
 
   const handleOnRemove = async (id) => {
     await remove(id);
-    await load();
-    // onChange();
+
+    const index = articles.findIndex((a) => a.id === id);
+
+    if (index > -1) {
+      articles.splice(index, 1);
+    }
+
+    setData({
+      articles: articles,
+    });
   };
 
   const handleOnFavorite = async (id, favorite) => {
-    await updateArticle(id, { favorite: !favorite });
-    await load();
+    const result = await updateArticle(id, { favorite: !favorite });
+    setData({
+      articles: findAndUpdateArticles(id, result),
+    });
   };
 
   const handleOnClickCheck = async (id, status) => {
-    await updateArticle(id, { status: status === "read" ? "unread" : "read" });
-    await load();
+    const result = await updateArticle(id, {
+      status: status === "read" ? "unread" : "read",
+    });
+    setData({
+      articles: findAndUpdateArticles(id, result),
+    });
+  };
+
+  const findAndUpdateArticles = (id, result) => {
+    for (let index = 0; index < articles.length; index++) {
+      if (articles[index].id === id) {
+        articles[index] = result;
+        break;
+      }
+    }
+    return articles;
   };
 
   const handleOnChangeTags = async (id, tags) => {
-    await updateArticle(id, { tags });
-    await load();
+    let result = await updateArticle(id, { tags });
+    setData({
+      articles: findAndUpdateArticles(id, result),
+    });
   };
 
   if (state === "loading") {

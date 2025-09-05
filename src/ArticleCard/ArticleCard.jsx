@@ -24,7 +24,7 @@ export const ArticleCard = ({
 
   const handleOnSubmitNewTag = (event) => {
     event.preventDefault();
-    const newTags = event?.currentTarget?.tags?.value?.trim()?.split(',');
+    const newTags = event?.currentTarget?.tags?.value?.trim()?.split(",");
     setNewInputVisible(false);
     const tagsToSend = [...tags, ...newTags].join("|");
     onChangeTags(tagsToSend);
