@@ -6,6 +6,10 @@ export const getArticles = (params) => {
     .then((res) => res.data?.data);
 };
 
+export const getTags = () => {
+  return axios.get("http://localhost:3001/tags").then((res) => res.data);
+};
+
 export const saveArticle = (article) => {
   return axios
     .post("http://localhost:3001/articles", article)

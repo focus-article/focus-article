@@ -65,7 +65,6 @@ h1 {
 }
 
 button {
-  border-radius: 50px;
   border: 1px solid var(--color-border);
   font-size: 1em;
   font-weight: 500;
@@ -73,8 +72,6 @@ button {
   background-color: transparent;
   cursor: pointer;
   transition: border-color 0.25s;
-  width: 50px;
-  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -83,7 +80,12 @@ button {
     fill: var(--primary-color);
   }
 }
-button:hover {
+button:not(.tag) {
+  width: 50px;
+  border-radius: 50px;
+  height: 50px;
+}
+button:not(.tag):hover {
   border-color: var(--color-hover);
 }
 button:focus,
