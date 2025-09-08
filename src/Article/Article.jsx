@@ -177,6 +177,14 @@ export const Articles = ({
     return <div>Error...</div>;
   }
 
+  function handleOnClickTagOnFilter(tag) {
+    if (filter.tag === tag) {
+      setFilter((_filter) => ({ ..._filter, tag: null }));
+      return;
+    }
+    setFilter((_filter) => ({ ..._filter, tag }));
+  }
+
   return (
     <div className="articles">
       <div className="header">
@@ -275,9 +283,7 @@ export const Articles = ({
                 {tags.map((tag, index) => (
                   <button
                     className={filter.tag === tag ? "tag selected" : "tag"}
-                    onClick={() =>
-                      setFilter((_filter) => ({ ..._filter, tag }))
-                    }
+                    onClick={() => handleOnClickTagOnFilter(tag)}
                   >
                     {tag}
                   </button>
