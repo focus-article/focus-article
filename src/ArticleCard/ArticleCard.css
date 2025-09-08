@@ -97,6 +97,13 @@
         right: -10px;
         background-color: var(--color-background);
         fill: white;
+        display: none;
+      }
+
+      &:hover {
+        button {
+            display: block;
+        }
       }
     }
     .new,
