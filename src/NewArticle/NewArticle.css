@@ -32,6 +32,8 @@
   }
 
   .info {
+    text-transform: capitalize;
+
     & form {
       display: flex;
       flex-direction: column;

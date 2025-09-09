@@ -28,7 +28,7 @@ export const NewArticle = ({ onClose, onChange }) => {
     await saveArticle({
       title: event.target.title.value,
       url: event.target.url.value,
-      tags: event.target.tags.value,
+      tags: event?.target?.tags?.value?.trim()?.replace(/,/g, "|"),
       status: "unread",
       author: event.target.author.value,
       image: event.target.image.value,
@@ -40,6 +40,27 @@ export const NewArticle = ({ onClose, onChange }) => {
   };
 
   const isDisabledInput = (url) => ["url"].some((i) => i === url);
+
+  function generateLabelNameByKey(key) {
+    const map = {
+      readTime: "Read Time",
+      publicationDate: "Publication Date",
+    };
+    if (map[key]) {
+      return map[key];
+    }
+    return key;
+  }
+
+  function generatePlaceholder(key) {
+    const map = {
+      tags: '"tag1, tags"',
+    };
+    if (map[key]) {
+      return map[key];
+    }
+    return "";
+  }
 
   return (
     <div className="new_article">
@@ -84,13 +105,20 @@ export const NewArticle = ({ onClose, onChange }) => {
               <table>
                 {Object.keys(data).map((key) => (
                   <tr className="table_values" key={key}>
-                    <td>{key}</td>
+                    <td>{generateLabelNameByKey(key)}:</td>
                     <td>
                       <input
                         type="text"
                         name={key}
                         value={data[key]}
                         disabled={isDisabledInput(key)}
+                        placeholder={generatePlaceholder(key)}
+                        onChange={(event) => {
+                          setData((_data) => ({
+                            ..._data,
+                            [key]: event?.target?.value,
+                          }));
+                        }}
                       />
                     </td>
                   </tr>
