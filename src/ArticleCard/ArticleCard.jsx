@@ -39,7 +39,7 @@ export const ArticleCard = ({
       <div
         key={url}
         className={isDragging ? "card dragging" : "card"}
-        draggable
+        // draggable
         onDragStart={onDragStart}
         onDragOver={onDragOver}
         onDragEnd={onDragEnd}

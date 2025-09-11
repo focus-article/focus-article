@@ -216,7 +216,7 @@ export const Articles = ({
         <div className="filters_wrapper">
           <div className="filters">
             <fieldset>
-              <legend>General:</legend>
+              <legend>General</legend>
               <label htmlFor="favorite">
                 <input
                   type={"checkbox"}
@@ -234,7 +234,7 @@ export const Articles = ({
               </label>
             </fieldset>
             <fieldset>
-              <legend>Status:</legend>
+              <legend>Status</legend>
               <div>
                 <input
                   type="radio"
