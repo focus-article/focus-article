@@ -42,11 +42,7 @@ export const Articles = ({
     setState("loading");
     getArticles(_params)
       .then((response) => {
-        setData({
-          tags: response.tags,
-          articles: response.articles,
-        });
-        setReorderedArticles(response.articles);
+        setData(response);
         if (articles.length === 0) {
           setState("empty");
         }
@@ -296,12 +292,12 @@ export const Articles = ({
       )}
       {state === "loading" && <div>Loading...</div>}
       <div className="list">
-        {reorderedArticles.length === 0 && (
+        {articles.length === 0 && (
           <div className="empth">
             <p>There is no articles to show</p>
           </div>
         )}
-        {reorderedArticles.map((article, index) => (
+        {articles.map((article, index) => (
           <ArticleCard
             key={article.id}
             {...article}

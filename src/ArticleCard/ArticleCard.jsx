@@ -26,12 +26,12 @@ export const ArticleCard = ({
     event.preventDefault();
     const newTags = event?.currentTarget?.tags?.value?.trim()?.split(",");
     setNewInputVisible(false);
-    const tagsToSend = [...tags, ...newTags].join("|");
+    const tagsToSend = [...tags, ...newTags];
     onChangeTags(tagsToSend);
   };
 
   const handleOnClickRemoveTag = (tag) => {
-    onChangeTags(tags?.filter((_tag) => _tag !== tag)?.join("|"));
+    onChangeTags(tags?.filter((_tag) => _tag !== tag));
   };
 
   return (
@@ -76,7 +76,7 @@ export const ArticleCard = ({
           {tags &&
             tags.length > 0 &&
             tags.map((tag) => (
-              <div className="tag_wrapper" key={tag}>
+              <div className="tag_wrapper">
                 <div className="tag">{tag}</div>
                 <button onClick={() => handleOnClickRemoveTag(tag)}>
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
