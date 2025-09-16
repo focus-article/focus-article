@@ -26,7 +26,7 @@ export const Articles = ({
     favorite: null,
     order: null,
     orderTime: null,
-    tag: null,
+    tags: new Set(),
     status: null,
   });
 
@@ -40,7 +40,10 @@ export const Articles = ({
 
   const load = (_params = null) => {
     setState("loading");
-    getArticles(_params)
+    getArticles({
+      ..._params,
+      tag: _params?.tags ? Array.from(_params?.tags) : null,
+    })
       .then((response) => {
         setData(response);
         if (articles.length === 0) {
@@ -173,12 +176,19 @@ export const Articles = ({
     return <div>Error...</div>;
   }
 
-  function handleOnClickTagOnFilter(tag) {
-    if (filter.tag === tag) {
-      setFilter((_filter) => ({ ..._filter, tag: null }));
-      return;
+  function toggle(set, value) {
+    if (set.has(value)) {
+      set.delete(value);
+    } else {
+      set.add(value);
     }
-    setFilter((_filter) => ({ ..._filter, tag }));
+    return set;
+  }
+
+  function handleOnClickTagOnFilter(tag) {
+    const { tags } = filter;
+    toggle(tags, tag);
+    setFilter((_filter) => ({ ..._filter, tags }));
   }
 
   return (
@@ -278,7 +288,7 @@ export const Articles = ({
               <div className="tags">
                 {tags.map((tag, index) => (
                   <button
-                    className={filter.tag === tag ? "tag selected" : "tag"}
+                    className={filter.tags.has(tag) ? "tag selected" : "tag"}
                     onClick={() => handleOnClickTagOnFilter(tag)}
                   >
                     {tag}
