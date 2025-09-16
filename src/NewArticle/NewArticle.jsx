@@ -28,7 +28,7 @@ export const NewArticle = ({ onClose, onChange }) => {
     await saveArticle({
       title: event.target.title.value,
       url: event.target.url.value,
-      tags: event?.target?.tags?.value?.trim()?.replace(/,/g, "|"),
+      tags: event?.target?.tags?.value?.trim()?.split(','),
       status: "unread",
       author: event.target.author.value,
       image: event.target.image.value,
