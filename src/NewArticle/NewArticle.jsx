@@ -14,7 +14,7 @@ export const NewArticle = ({ onClose, onChange }) => {
       return;
     }
 
-    fetch(`http://localhost:3000/?url=${url}`)
+    fetch(`http://localhost:3001/extractor?url=${url}`)
       .then((res) => res.json())
       .then((data) => {
         setData(data);
