@@ -7,7 +7,8 @@
     "watch": "bun --hot src/index.tsx",
     "build": "bun build ./src/index.html --outdir=dist --sourcemap --target=browser --minify --define:process.env.NODE_ENV='\"production\"' --env='BUN_PUBLIC_*'",
     "start": "NODE_ENV=production bun src/index.tsx",
-    "lint": "bun x prettier --write ."
+    "lint": "bun x prettier --write .",
+    "pm2": "pm2 start src/index.tsx --interpreter=bun && pm2 startup && pm2 save"
   },
   "dependencies": {
     "@types/axios": "^0.14.4",
