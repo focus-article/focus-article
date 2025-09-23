@@ -1,6 +1,10 @@
 # Focus Article
 
-Front-end implementation of Focus Article: A minima self-storage project to save your favorite articles without any distraction.
+Front-end implementation of Focus Article: A minimal self-storage project to save your favorite articles without any distraction.
+
+<p align="center">
+  <img alt="Focus Article UI" src="./img.png">
+</p>
 
 ## Prerequisites
 
