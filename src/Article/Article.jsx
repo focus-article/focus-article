@@ -27,7 +27,7 @@ export const Articles = ({
     order: null,
     orderTime: null,
     tags: new Set(),
-    status: null,
+    status: 'unread',
   });
 
   useEffect(() => {
