@@ -24,3 +24,21 @@ bun install
 ```bash
 bun run watch
 ```
+
+## Startup with your O.S
+
+1. Install pm2 globally
+
+```bash
+npm i pm2 -g
+```
+
+2. Run pm2 script
+
+```
+bun run pm2
+```
+
+This is going to run focus-article-ui on port 3006. You need to do the same with focus-article-server. 
+
+> Attention: If you already run this command before, you should run `pm2 kill` before.  
