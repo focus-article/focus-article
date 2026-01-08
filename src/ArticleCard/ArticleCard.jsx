@@ -1,5 +1,5 @@
 import "./ArticleCard.css";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export const ArticleCard = ({
   title,
@@ -19,6 +19,12 @@ export const ArticleCard = ({
   onChangeTags,
 }) => {
   const [newInputVisible, setNewInputVisible] = useState(false);
+
+  const newTagRef = useRef(null);
+
+  useEffect(() => {
+    newTagRef?.current?.focus();
+  }, [newInputVisible]);
 
   const handleOnClickArticle = () => window.open(url, "_blank");
 
@@ -96,7 +102,12 @@ export const ArticleCard = ({
             </button>
           ) : (
             <form className="new_wrapper" onSubmit={handleOnSubmitNewTag}>
-              <input type="text" placeholder={"tag1, tags"} name="tags" />
+              <input
+                type="text"
+                placeholder={"tag1, tags"}
+                name="tags"
+                ref={newTagRef}
+              />
               <button
                 type="button"
                 className="close"
