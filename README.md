@@ -39,6 +39,6 @@ npm i pm2 -g
 bun run pm2
 ```
 
-This is going to run focus-article-ui on port 3006. You need to do the same with focus-article-server. 
+This is going to run focus-article-ui on port 3006. You need to do the same with focus-article-server.
 
-> Attention: If you already run this command before, you should run `pm2 kill` before.  
+> Attention: If you already run this command before, you should run `pm2 kill` before.
