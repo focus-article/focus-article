@@ -30,11 +30,11 @@ export const NewArticle = ({ onClose, onChange }) => {
       url: event.target.url.value,
       tags: event?.target?.tags?.value?.trim()?.split(","),
       status: "unread",
-      author: event.target.author.value,
-      image: event.target.image.value,
-      publicationDate: event.target.publicationDate.value,
-      readTime: +event.target.readTime?.value,
-      description: event.target.description.value,
+      author: event.target?.author?.value,
+      image: event.target?.image?.value,
+      publicationDate: event.target?.publicationDate?.value,
+      readTime: +event.target?.readTime?.value,
+      description: event.target?.description?.value,
     });
     onChange();
   };
