@@ -127,48 +127,38 @@ export const Articles = ({
   const handleOnRemove = async (id) => {
     await remove(id);
 
-    const index = articles.findIndex((a) => a.id === id);
-
-    if (index > -1) {
-      articles.splice(index, 1);
-    }
-
-    setData({
-      articles: articles,
-    });
+    setData((_data) => ({
+      ..._data,
+      articles: _data.articles.filter((article) => article.id !== id),
+    }));
   };
 
   const handleOnFavorite = async (id, favorite) => {
     const result = await updateArticle(id, { favorite: !favorite });
-    setData({
-      articles: findAndUpdateArticles(id, result),
-    });
+    setData((_data) => ({
+      ..._data,
+      articles: findAndUpdateArticles(_data.articles, id, result),
+    }));
   };
 
   const handleOnClickCheck = async (id, status) => {
     const result = await updateArticle(id, {
       status: status === "read" ? "unread" : "read",
     });
-    setData({
-      articles: findAndUpdateArticles(id, result),
-    });
+    setData((_data) => ({
+      ..._data,
+      articles: findAndUpdateArticles(_data.articles, id, result),
+    }));
   };
 
-  const findAndUpdateArticles = (id, result) => {
-    for (let index = 0; index < articles.length; index++) {
-      if (articles[index].id === id) {
-        articles[index] = result;
-        break;
-      }
-    }
-    return articles;
-  };
+  const findAndUpdateArticles = (_articles, id, result) =>
+    _articles.map((article) => (article.id === id ? result : article));
 
   const handleOnChangeTags = async (id, _tags) => {
     let result = await updateArticle(id, { tags: _tags });
     setData((_data) => ({
-      articles: findAndUpdateArticles(id, result),
-      tags: _data.tags,
+      ..._data,
+      articles: findAndUpdateArticles(_data.articles, id, result),
     }));
   };
 
@@ -197,7 +187,7 @@ export const Articles = ({
         <h3>Articles</h3>
         {/*<button onClick={() => setShowTags(state => !state)}><svg className="icon" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M3.9 54.9C10.5 40.9 24.5 32 40 32H472c15.5 0 29.5 8.9 36.1 22.9s4.6 30.5-5.2 42.5L320 320.9V448c0 12.1-6.8 23.2-17.7 28.6s-23.8 4.3-33.5-3l-64-48c-8.1-6-12.8-15.5-12.8-25.6V320.9L9 97.3C-.7 85.4-2.8 68.8 3.9 54.9z"/></svg></button>*/}
         <div className="actions">
-          <button onClick={() => setShowFilters(!showFilters)}>
+          <button id="filters" onClick={() => setShowFilters(!showFilters)}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="1em"
@@ -206,7 +196,7 @@ export const Articles = ({
               <path d="M96 128C83.1 128 71.4 135.8 66.4 147.8C61.4 159.8 64.2 173.5 73.4 182.6L256 365.3L256 480C256 488.5 259.4 496.6 265.4 502.6L329.4 566.6C338.6 575.8 352.3 578.5 364.3 573.5C376.3 568.5 384 556.9 384 544L384 365.3L566.6 182.7C575.8 173.5 578.5 159.8 573.5 147.8C568.5 135.8 556.9 128 544 128L96 128z" />
             </svg>
           </button>
-          <button onClick={onClickNew}>
+          <button id="new_article" onClick={onClickNew}>
             <svg
               className="icon"
               xmlns="http://www.w3.org/2000/svg"
