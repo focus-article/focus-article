@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "watch": "bun --hot src/index.tsx",
+    "watch": "PORT=3010 BUN_PUBLIC_SERVER_API_PORT=3002 bun --hot src/index.tsx",
     "build": "bun build ./src/index.html --outdir=dist --sourcemap --target=browser --minify --define:process.env.NODE_ENV='\"production\"' --env='BUN_PUBLIC_*'",
     "start": "NODE_ENV=production bun src/index.tsx",
     "lint": "bun x prettier --write .",

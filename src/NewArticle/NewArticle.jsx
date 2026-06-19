@@ -1,6 +1,6 @@
 import React from "react";
 import "./NewArticle.css";
-import { saveArticle } from "../Service/Service.js";
+import { extractArticleMetadata, saveArticle } from "../Service/Service.js";
 
 export const NewArticle = ({ onClose, onChange }) => {
   const [state, setState] = React.useState();
@@ -14,8 +14,7 @@ export const NewArticle = ({ onClose, onChange }) => {
       return;
     }
 
-    fetch(`http://localhost:3001/extractor?url=${url}`)
-      .then((res) => res.json())
+    extractArticleMetadata(url)
       .then((data) => {
         setData(data);
         setState("loaded");

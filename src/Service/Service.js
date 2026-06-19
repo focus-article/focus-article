@@ -1,29 +1,71 @@
 import axios from "axios";
 
-export const getArticles = (params) => {
+const publicEnv = typeof process !== "undefined" ? process.env : {};
+const fallbackApiPort =
+  publicEnv.BUN_PUBLIC_SERVER_API_PORT ??
+  publicEnv.BUN_PUBLIC_API_PORT ??
+  "3001";
+const fallbackApiHost = publicEnv.BUN_PUBLIC_API_HOST ?? "localhost";
+const fallbackApiUrl =
+  publicEnv.BUN_PUBLIC_API_URL ??
+  `http://${fallbackApiHost}:${fallbackApiPort}`;
+
+let apiUrlPromise;
+
+const getApiUrl = () => {
+  if (apiUrlPromise) {
+    return apiUrlPromise;
+  }
+
+  if (typeof fetch === "undefined") {
+    apiUrlPromise = Promise.resolve(fallbackApiUrl);
+    return apiUrlPromise;
+  }
+
+  apiUrlPromise = fetch("/env.json")
+    .then((res) => (res.ok ? res.json() : null))
+    .then((config) => config?.apiUrl ?? fallbackApiUrl)
+    .catch(() => fallbackApiUrl);
+
+  return apiUrlPromise;
+};
+
+export const getArticles = async (params) => {
+  const apiUrl = await getApiUrl();
   return axios
-    .get("http://localhost:3001/articles?size=-1", { params })
+    .get(`${apiUrl}/articles?size=-1`, { params })
     .then((res) => res.data?.data);
 };
 
-export const getTags = () => {
-  return axios.get("http://localhost:3001/tags").then((res) => res.data);
+export const getTags = async () => {
+  const apiUrl = await getApiUrl();
+  return axios.get(`${apiUrl}/tags`).then((res) => res.data);
 };
 
-export const saveArticle = (article) => {
+export const saveArticle = async (article) => {
+  const apiUrl = await getApiUrl();
   return axios
-    .post("http://localhost:3001/articles", article)
+    .post(`${apiUrl}/articles`, article)
     .then((res) => res.data);
 };
 
-export const updateArticle = (id, changes) => {
+export const updateArticle = async (id, changes) => {
+  const apiUrl = await getApiUrl();
   return axios
-    .patch(`http://localhost:3001/articles/${id}`, changes)
+    .patch(`${apiUrl}/articles/${id}`, changes)
     .then((res) => res.data);
 };
 
-export const remove = (id) => {
+export const remove = async (id) => {
+  const apiUrl = await getApiUrl();
   return axios
-    .delete(`http://localhost:3001/articles/${id}`)
+    .delete(`${apiUrl}/articles/${id}`)
+    .then((res) => res.data);
+};
+
+export const extractArticleMetadata = async (url) => {
+  const apiUrl = await getApiUrl();
+  return axios
+    .get(`${apiUrl}/extractor`, { params: { url } })
     .then((res) => res.data);
 };
