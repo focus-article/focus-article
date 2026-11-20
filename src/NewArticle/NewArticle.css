@@ -60,7 +60,7 @@
 table {
   margin-top: var(--margin-page);
   margin-bottom: var(--margin-page);
-  font-family: arial, sans-serif;
+  font-family: inherit;
   border-collapse: collapse;
   width: 100%;
 }
