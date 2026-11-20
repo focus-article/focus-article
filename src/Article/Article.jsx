@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./Article.css";
 import { Tag, Tags } from "../Tag/Tag.jsx";
 import { getArticles, remove, updateArticle } from "../Service/Service.js";
@@ -12,7 +12,11 @@ export const Articles = ({
   onChange,
   onClickNew,
 }) => {
-  const [{ articles, tags }, setData] = useState({ articles: [], tags: [] });
+  const [{ articles, tags, years, hasUndefinedYear }, setData] = useState({
+    articles: [], tags: [], years: [], hasUndefinedYear: false,
+  });
+  const publicationYears = hasUndefinedYear ? [...years, "undefined"] : years;
+  const latestRequest = useRef(0);
   const [state, setState] = useState("loading");
   const [showTags, setShowTags] = useState(false);
   const [draggedIndex, setDraggedIndex] = useState(null);
@@ -28,30 +32,36 @@ export const Articles = ({
     orderTime: null,
     tags: new Set(),
     status: "unread",
+    publicationYears: null,
   });
-
-  useEffect(() => {
-    load();
-  }, []);
 
   useEffect(() => {
     load(filter);
   }, [filter]);
 
   const load = (_params = null) => {
+    const requestId = ++latestRequest.current;
     setState("loading");
+    const { tags: selectedTags, publicationYears: selectedYears = null, ...params } = _params ?? {};
+    if (selectedYears?.length === 0) {
+      setData((current) => ({ ...current, articles: [] }));
+      setState("loaded");
+      return;
+    }
     getArticles({
-      ..._params,
-      tag: _params?.tags ? Array.from(_params?.tags) : null,
+      ...params,
+      tag: selectedTags ? Array.from(selectedTags) : null,
+      // Only All leaves publication dates unrestricted.
+      publicationYear: selectedYears ?? undefined,
     })
       .then((response) => {
-        setData(response);
-        if (articles.length === 0) {
-          setState("empty");
-        }
+        if (requestId !== latestRequest.current) return;
+        setData({ ...response, years: response.years ?? [], hasUndefinedYear: response.hasUndefinedYear === true });
+        setState("loaded");
       })
-      .finally(() => setState("loaded"))
-      .catch(() => setState("error"));
+      .catch(() => {
+        if (requestId === latestRequest.current) setState("error");
+      });
   };
 
   const handleDragStart = (e, index) => {
@@ -211,6 +221,7 @@ export const Articles = ({
       {showFilters && (
         <div className="filters_wrapper">
           <div className="filters">
+            <div className="filters-sidebar">
             <fieldset>
               <legend>General</legend>
               <label htmlFor="favorite">
@@ -273,7 +284,48 @@ export const Articles = ({
                 <label htmlFor="all">All</label>
               </div>
             </fieldset>
-            <fieldset>
+            <fieldset className="publication-year-filter">
+              <legend>Publication year</legend>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={filter.publicationYears === null}
+                  ref={(input) => {
+                    if (input) input.indeterminate = filter.publicationYears !== null && filter.publicationYears.length > 0;
+                  }}
+                  onChange={(event) => {
+                    const checked = event.target.checked;
+                    setFilter((current) => ({ ...current, publicationYears: checked ? null : [] }));
+                  }}
+                />
+                All
+              </label>
+              {publicationYears.map((year) => (
+                <label key={year}>
+                  <input
+                    type="checkbox"
+                    value={year}
+                    checked={filter.publicationYears === null || filter.publicationYears.includes(year)}
+                    onChange={(event) => {
+                      const checked = event.target.checked;
+                      setFilter((current) => {
+                        const selected = current.publicationYears ?? publicationYears;
+                        const next = checked
+                          ? [...selected, year]
+                          : selected.filter((value) => value !== year);
+                        return {
+                          ...current,
+                          publicationYears: next.length === publicationYears.length ? null : next,
+                        };
+                      });
+                    }}
+                  />
+                  {year === "undefined" ? "Undefined Year" : year}
+                </label>
+              ))}
+            </fieldset>
+            </div>
+            <fieldset className="tags-filter">
               <legend>Tags</legend>
               <div className="tags">
                 {tags.map((tag, index) => (

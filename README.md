@@ -22,7 +22,7 @@ bun install
 2. Run the server
 
 ```bash
-bun run watch
+bun run dev
 ```
 
 ## Startup with your O.S
@@ -42,3 +42,11 @@ bun run pm2
 This is going to run focus-article-ui on port 3006. You need to do the same with focus-article-server.
 
 > Attention: If you already run this command before, you should run `pm2 kill` before.
+
+## Development
+
+Run `bun run dev` in this repository and in `focus-article-server` (separate terminals).
+The UI listens on `http://localhost:3007` and automatically uses the development
+API at `http://localhost:3002` through `/env.json`. `bun run watch` is an alias.
+Bun watches server changes and enables frontend hot reloading in development.
+The production UI keeps its default port 3006 and API port 3001.

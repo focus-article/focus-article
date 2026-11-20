@@ -31,6 +31,7 @@
 
   .filters {
     display: flex;
+    flex-wrap: wrap;
     gap: 5px;
 
     fieldset {
@@ -40,12 +41,29 @@
       padding: 1rem;
       margin: 0;
     }
-    > fieldset:nth-child(1),
-    > fieldset:nth-child(2) {
-      flex: 0 0 auto;
+    .filters-sidebar {
+      display: grid;
+      grid-template-columns: repeat(2, max-content);
+      grid-template-rows: max-content 1fr;
+      align-items: stretch;
+      gap: 5px;
     }
-    > fieldset:nth-child(3) {
+
+    .publication-year-filter {
+      grid-column: 1 / -1;
+      width: 100%;
+    }
+
+    > .tags-filter {
       flex: 1;
+      min-width: 200px;
+    }
+
+    .publication-year-filter label {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
     }
 
     .tags {
