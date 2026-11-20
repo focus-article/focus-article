@@ -67,7 +67,7 @@ table {
 
 td,
 th {
-  border: 1px solid #dddddd;
+  border: 1px solid var(--color-border);
   text-align: left;
   padding: 8px;
 }

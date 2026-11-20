@@ -5,8 +5,8 @@
   font-weight: 400;
   letter-spacing: -0.025em;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color-scheme: dark;
+  color: var(--primary-color);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -19,6 +19,9 @@
   --color-border: rgba(205, 205, 205, 0.13);
   --color-hover: #646cff;
   --color-background: #242424;
+  --color-input: #353535;
+  --color-link: #a6aaff;
+  --color-placeholder: #ababab;
 
   --margin-page: 20px;
 }
@@ -49,34 +52,33 @@ button {
   letter-spacing: inherit;
 }
 
-/* Valores para quando o usuário prefere o tema claro */
-@media (prefers-color-scheme: light) {
-  :root {
-    --primary-color: #242424;
-    --color-tag: #7aa9dd;
-    --color-selected-tag: #a89ac9;
-    --color-border: rgba(180, 180, 180, 0.5);
-    --color-hover: #4a90e2;
-    --color-background: #f5f5f5;
-    --transition-velocity: 0.3s;
-  }
+:root[data-theme="light"] {
+  color-scheme: light;
+  --primary-color: #242424;
+  --color-tag: #e2eaf5;
+  --color-selected-tag: #d6cce9;
+  --color-border: #c7c7cd;
+  --color-hover: #454db5;
+  --color-background: #f5f5f5;
+  --color-input: #ffffff;
+  --color-link: #454db5;
+  --color-placeholder: #68686e;
 }
 
 html,
 body {
-  transition: background-color var(--transition-velocity) ease-in-out;
   background-color: var(--color-background);
   height: 100%;
 }
 
 a {
   font-weight: 400;
-  color: #646cff;
+  color: var(--color-link);
   text-decoration: inherit;
 }
 
 a:hover {
-  color: #535bf2;
+  color: var(--color-hover);
 }
 
 h1 {
@@ -90,6 +92,7 @@ button {
   font-weight: 500;
   font-family: inherit;
   background-color: transparent;
+  color: var(--primary-color);
   cursor: pointer;
   transition: border-color 0.25s;
   display: flex;
@@ -113,15 +116,47 @@ button:focus-visible {
   outline: 4px auto var(--color-hover);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+
+input,
+textarea,
+select {
+  color: var(--primary-color);
+  background-color: var(--color-input);
+  accent-color: var(--color-hover);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-placeholder);
+  opacity: 1;
+}
+
+button svg {
+  fill: var(--primary-color);
+}
+
+/* Animate only palette changes, leaving layout and regular interactions alone. */
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after,
+html.theme-transition input::placeholder,
+html.theme-transition textarea::placeholder {
+  transition: background-color 320ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 320ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 320ms cubic-bezier(0.4, 0, 0.2, 1),
+    fill 320ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke 320ms cubic-bezier(0.4, 0, 0.2, 1),
+    accent-color 320ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.theme-transition,
+  html.theme-transition *,
+  html.theme-transition *::before,
+  html.theme-transition *::after,
+  html.theme-transition input::placeholder,
+  html.theme-transition textarea::placeholder {
+    transition: none !important;
   }
 }

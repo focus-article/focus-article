@@ -1,0 +1,29 @@
+.account {
+  margin-top: var(--margin-page);
+  width: 100%;
+}
+
+.account-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.theme-options {
+  width: fit-content;
+  margin: 0;
+  padding: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 5px;
+}
+
+.theme-options label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.theme-options input {
+  margin: 0;
+}

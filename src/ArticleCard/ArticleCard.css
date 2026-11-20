@@ -8,7 +8,7 @@
 
     width: 450px;
 
-    color: black;
+    color: var(--primary-color);
 
     /*transition: all 0.3s;*/
     /*animation: scaleInOut 0.5s forwards;*/
@@ -74,7 +74,7 @@
       border: none;
       height: 0.5px;
       width: 100%;
-      /* color: white; */
+      /* color: var(--primary-color); */
       background-color: var(--color-border);
     }
   }
@@ -85,7 +85,7 @@
 
       .tag {
         padding: 2px 10px;
-        color: white;
+        color: var(--primary-color);
         border: 1px solid var(--color-border);
         border-radius: 10px;
       }
@@ -96,7 +96,7 @@
         top: -10px;
         right: -10px;
         background-color: var(--color-background);
-        fill: white;
+        fill: var(--primary-color);
         display: none;
       }
 
@@ -113,7 +113,7 @@
       width: 30px;
       height: 30px;
       svg {
-        fill: white;
+        fill: var(--primary-color);
       }
     }
     .new_wrapper {
