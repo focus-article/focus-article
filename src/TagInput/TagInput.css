@@ -1,0 +1,71 @@
+.new_article .tag-editor {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 0;
+  text-transform: none;
+}
+
+.tag-editor-item {
+  position: relative;
+  min-width: 0;
+  max-width: 100%;
+  padding: 2px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  overflow-wrap: anywhere;
+}
+
+.new_article .info .tag-editor button {
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+}
+
+.new_article .info .tag-editor .tag-editor-remove {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  top: -10px;
+  right: -10px;
+  border-radius: 50%;
+  background-color: var(--color-background);
+  opacity: 0;
+}
+
+.tag-editor-remove svg {
+  width: 16px;
+  height: 16px;
+}
+
+.new_article .info .tag-editor .tag-editor-item:hover .tag-editor-remove,
+.new_article .info .tag-editor .tag-editor-item:focus-within .tag-editor-remove {
+  opacity: 1;
+}
+
+.new_article .info .tag-editor .tag-editor-control {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+.tag-editor-entry {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.new_article .info .tag-editor-entry input {
+  width: 160px;
+  min-width: 0;
+  border-radius: 10px;
+}
+
+@media (hover: none) {
+  .new_article .info .tag-editor .tag-editor-remove { opacity: 1; }
+}

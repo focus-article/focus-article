@@ -1,10 +1,13 @@
 import React from "react";
 import "./NewArticle.css";
+import { TagInput } from "../TagInput/TagInput.jsx";
+import { normalizeTags } from "../TagInput/tags.js";
 import { extractArticleMetadata, saveArticle } from "../Service/Service.js";
 
 export const NewArticle = ({ onClose, onChange }) => {
   const [state, setState] = React.useState();
   const [data, setData] = React.useState();
+  const [tagDraft, setTagDraft] = React.useState("");
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
@@ -16,7 +19,8 @@ export const NewArticle = ({ onClose, onChange }) => {
 
     extractArticleMetadata(url)
       .then((data) => {
-        setData(data);
+        setData({ ...data, tags: normalizeTags(data.tags) });
+        setTagDraft("");
         setState("loaded");
       })
       .catch(() => setState("error"));
@@ -27,7 +31,7 @@ export const NewArticle = ({ onClose, onChange }) => {
     await saveArticle({
       title: event.target.title.value,
       url: event.target.url.value,
-      tags: event?.target?.tags?.value?.trim()?.split(","),
+      tags: normalizeTags([...(data.tags ?? []), tagDraft]),
       status: "unread",
       author: event.target?.author?.value,
       image: event.target?.image?.value,
@@ -51,15 +55,6 @@ export const NewArticle = ({ onClose, onChange }) => {
     return key;
   }
 
-  function generatePlaceholder(key) {
-    const map = {
-      tags: '"tag1, tags"',
-    };
-    if (map[key]) {
-      return map[key];
-    }
-    return "";
-  }
 
   return (
     <div className="new_article">
@@ -106,12 +101,19 @@ export const NewArticle = ({ onClose, onChange }) => {
                   <tr className="table_values" key={key}>
                     <td>{generateLabelNameByKey(key)}:</td>
                     <td>
+                      {key === "tags" ? (
+                        <TagInput
+                          tags={data.tags}
+                          draft={tagDraft}
+                          onDraftChange={setTagDraft}
+                          onChange={(tags) => setData((current) => ({ ...current, tags }))}
+                        />
+                      ) : (
                       <input
                         type="text"
                         name={key}
                         value={data[key]}
                         disabled={isDisabledInput(key)}
-                        placeholder={generatePlaceholder(key)}
                         onChange={(event) => {
                           setData((_data) => ({
                             ..._data,
@@ -119,6 +121,7 @@ export const NewArticle = ({ onClose, onChange }) => {
                           }));
                         }}
                       />
+                      )}
                     </td>
                   </tr>
                 ))}
