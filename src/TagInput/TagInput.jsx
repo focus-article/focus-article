@@ -18,7 +18,7 @@ export const TagInput = ({ tags, onChange, draft, onDraftChange }) => {
           <span>{tag}</span>
           <button
             type="button"
-            className="tag-editor-remove"
+            className="tag-editor-remove destructive"
             aria-label={`Remove tag ${tag}`}
             title={`Remove tag ${tag}`}
             onClick={() => onChange(tags.filter((value) => value !== tag))}

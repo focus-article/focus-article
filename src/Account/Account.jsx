@@ -4,7 +4,7 @@ import "./Account.css";
 export const Account = ({ onClose, theme, onChangeTheme }) => (
   <section className="account" aria-labelledby="account-title">
     <div className="account-header">
-      <h3 id="account-title">Minha conta</h3>
+      <h3 id="account-title">My account</h3>
       <button
         type="button"
         onClick={onClose}

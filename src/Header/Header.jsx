@@ -1,21 +1,21 @@
 import "./Header.css";
 import React from "react";
+import logo from "../Assets/logo.svg";
 
 export const Header = ({ onClickAccount }) => (
   <header className="brand-header">
     <div className="brand">
-      <span className="brand-mark" aria-hidden="true">
-        f.
-      </span>
+      <img className="brand-mark" src={logo} alt="" width="36" height="36" />
       <span>
-        focus<span className="brand-light">article</span>
+        <span className="brand-focus">focus</span>
+        <span className="brand-light">article</span>
       </span>
     </div>
     <button
       type="button"
       className="account-button"
-      aria-label="Minha conta"
-      title="Minha conta"
+      aria-label="My account"
+      title="My account"
       onClick={onClickAccount}
     >
       <svg

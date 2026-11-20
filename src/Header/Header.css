@@ -22,18 +22,17 @@
   letter-spacing: -0.8px;
 }
 
+.brand-focus {
+  font-weight: 700;
+}
+
 .brand-light {
   font-weight: 400;
 }
 
 .brand-mark {
-  display: grid;
-  place-items: center;
+  display: block;
+  flex-shrink: 0;
   width: 36px;
   height: 36px;
-  border-radius: 11px;
-  background: #a8dfb8;
-  color: #142c1d;
-  font-family: Georgia, serif;
-  font-size: 27px;
 }

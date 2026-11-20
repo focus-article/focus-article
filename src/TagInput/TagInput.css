@@ -75,3 +75,7 @@
     opacity: 1;
   }
 }
+
+.new_article .info .tag-editor .tag-editor-remove:hover {
+  background-color: var(--color-button-hover-background);
+}

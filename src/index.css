@@ -13,6 +13,11 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
+  --color-brand: #a8dfb8;
+  --color-button-hover: #a8dfb8;
+  --color-button-hover-background: #a8dfb81a;
+  --color-danger: #ffaaa3;
+  --color-danger-background: #ffaaa31a;
   --primary-color: #eaeaea;
   --color-tag: #313d5a;
   --color-selected-tag: #73628a;
@@ -54,6 +59,10 @@ button {
 
 :root[data-theme="light"] {
   color-scheme: light;
+  --color-button-hover: #326344;
+  --color-button-hover-background: #a8dfb840;
+  --color-danger: #a42d27;
+  --color-danger-background: #a42d2714;
   --primary-color: #242424;
   --color-tag: #e2eaf5;
   --color-selected-tag: #d6cce9;
@@ -94,13 +103,16 @@ button {
   background-color: transparent;
   color: var(--primary-color);
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease;
   display: flex;
   align-items: center;
   justify-content: center;
 
   .icon {
-    fill: var(--primary-color);
+    fill: currentColor;
   }
 }
 button:not(.tag) {
@@ -108,12 +120,21 @@ button:not(.tag) {
   border-radius: 50px;
   height: 50px;
 }
-button:not(.tag):hover {
-  border-color: var(--color-hover);
+button:hover,
+button:active {
+  border-color: var(--color-button-hover);
+  background-color: var(--color-button-hover-background);
+  color: var(--color-button-hover);
+}
+
+button.destructive {
+  --color-button-hover: var(--color-danger);
+  --color-button-hover-background: var(--color-danger-background);
 }
 button:focus,
 button:focus-visible {
-  outline: 4px auto var(--color-hover);
+  outline: 2px solid var(--color-button-hover);
+  outline-offset: 3px;
 }
 
 input,
@@ -131,7 +152,7 @@ textarea::placeholder {
 }
 
 button svg {
-  fill: var(--primary-color);
+  fill: currentColor;
 }
 
 /* Animate only palette changes, leaving layout and regular interactions alone. */
