@@ -20,7 +20,13 @@ function App() {
           <Articles onClickNew={() => setRoute("new_article")} />
         )}
         {route === "menu" && <Menu onClose={() => setRoute("home")} />}
-        {route === "account" && <Account theme={theme} onChangeTheme={changeTheme} onClose={() => setRoute("home")} />}
+        {route === "account" && (
+          <Account
+            theme={theme}
+            onChangeTheme={changeTheme}
+            onClose={() => setRoute("home")}
+          />
+        )}
         {route === "new_article" && (
           <NewArticle
             onClose={() => setRoute("home")}

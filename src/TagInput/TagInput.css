@@ -41,7 +41,11 @@
 }
 
 .new_article .info .tag-editor .tag-editor-item:hover .tag-editor-remove,
-.new_article .info .tag-editor .tag-editor-item:focus-within .tag-editor-remove {
+.new_article
+  .info
+  .tag-editor
+  .tag-editor-item:focus-within
+  .tag-editor-remove {
   opacity: 1;
 }
 
@@ -67,5 +71,7 @@
 }
 
 @media (hover: none) {
-  .new_article .info .tag-editor .tag-editor-remove { opacity: 1; }
+  .new_article .info .tag-editor .tag-editor-remove {
+    opacity: 1;
+  }
 }

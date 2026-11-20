@@ -20,12 +20,18 @@ function applyTheme(theme, animate = true) {
     theme === "system" ? (systemTheme.matches ? "dark" : "light") : theme;
   if (root.dataset.theme === nextTheme) return;
 
-  if (animate && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  if (
+    animate &&
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  ) {
     clearTimeout(transitionTimeout);
     root.classList.add("theme-transition");
     // Register the transition styles before changing the palette.
     void root.offsetWidth;
-    transitionTimeout = setTimeout(() => root.classList.remove("theme-transition"), 400);
+    transitionTimeout = setTimeout(
+      () => root.classList.remove("theme-transition"),
+      400,
+    );
   }
   root.dataset.theme = nextTheme;
 }

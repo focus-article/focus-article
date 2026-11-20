@@ -44,9 +44,7 @@ export const getTags = async () => {
 
 export const saveArticle = async (article) => {
   const apiUrl = await getApiUrl();
-  return axios
-    .post(`${apiUrl}/articles`, article)
-    .then((res) => res.data);
+  return axios.post(`${apiUrl}/articles`, article).then((res) => res.data);
 };
 
 export const updateArticle = async (id, changes) => {
@@ -58,9 +56,7 @@ export const updateArticle = async (id, changes) => {
 
 export const remove = async (id) => {
   const apiUrl = await getApiUrl();
-  return axios
-    .delete(`${apiUrl}/articles/${id}`)
-    .then((res) => res.data);
+  return axios.delete(`${apiUrl}/articles/${id}`).then((res) => res.data);
 };
 
 export const extractArticleMetadata = async (url) => {

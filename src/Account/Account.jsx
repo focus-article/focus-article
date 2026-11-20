@@ -5,7 +5,12 @@ export const Account = ({ onClose, theme, onChangeTheme }) => (
   <section className="account" aria-labelledby="account-title">
     <div className="account-header">
       <h3 id="account-title">Minha conta</h3>
-      <button type="button" onClick={onClose} aria-label="Voltar para artigos" title="Voltar para artigos">
+      <button
+        type="button"
+        onClick={onClose}
+        aria-label="Voltar para artigos"
+        title="Voltar para artigos"
+      >
         <svg
           className="icon"
           xmlns="http://www.w3.org/2000/svg"

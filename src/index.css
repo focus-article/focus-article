@@ -116,7 +116,6 @@ button:focus-visible {
   outline: 4px auto var(--color-hover);
 }
 
-
 input,
 textarea,
 select {
@@ -142,7 +141,8 @@ html.theme-transition *::before,
 html.theme-transition *::after,
 html.theme-transition input::placeholder,
 html.theme-transition textarea::placeholder {
-  transition: background-color 320ms cubic-bezier(0.4, 0, 0.2, 1),
+  transition:
+    background-color 320ms cubic-bezier(0.4, 0, 0.2, 1),
     color 320ms cubic-bezier(0.4, 0, 0.2, 1),
     border-color 320ms cubic-bezier(0.4, 0, 0.2, 1),
     fill 320ms cubic-bezier(0.4, 0, 0.2, 1),

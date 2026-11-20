@@ -13,7 +13,10 @@ export const Articles = ({
   onClickNew,
 }) => {
   const [{ articles, tags, years, hasUndefinedYear }, setData] = useState({
-    articles: [], tags: [], years: [], hasUndefinedYear: false,
+    articles: [],
+    tags: [],
+    years: [],
+    hasUndefinedYear: false,
   });
   const publicationYears = hasUndefinedYear ? [...years, "undefined"] : years;
   const latestRequest = useRef(0);
@@ -42,7 +45,11 @@ export const Articles = ({
   const load = (_params = null) => {
     const requestId = ++latestRequest.current;
     setState("loading");
-    const { tags: selectedTags, publicationYears: selectedYears = null, ...params } = _params ?? {};
+    const {
+      tags: selectedTags,
+      publicationYears: selectedYears = null,
+      ...params
+    } = _params ?? {};
     if (selectedYears?.length === 0) {
       setData((current) => ({ ...current, articles: [] }));
       setState("loaded");
@@ -56,7 +63,11 @@ export const Articles = ({
     })
       .then((response) => {
         if (requestId !== latestRequest.current) return;
-        setData({ ...response, years: response.years ?? [], hasUndefinedYear: response.hasUndefinedYear === true });
+        setData({
+          ...response,
+          years: response.years ?? [],
+          hasUndefinedYear: response.hasUndefinedYear === true,
+        });
         setState("loaded");
       })
       .catch(() => {
@@ -222,108 +233,121 @@ export const Articles = ({
         <div className="filters_wrapper">
           <div className="filters">
             <div className="filters-sidebar">
-            <fieldset>
-              <legend>General</legend>
-              <label htmlFor="favorite">
-                <input
-                  type={"checkbox"}
-                  id={"favorite"}
-                  checked={filter?.favorite === true}
-                  onClick={() =>
-                    setFilter((_filter) => ({
-                      ..._filter,
-                      favorite: !_filter.favorite,
-                    }))
-                  }
-                  name="favorite"
-                />
-                Favorite
-              </label>
-            </fieldset>
-            <fieldset>
-              <legend>Status</legend>
-              <div>
-                <input
-                  type="radio"
-                  id="read"
-                  name="status"
-                  value="read"
-                  checked={filter?.status === "read"}
-                  onClick={() =>
-                    setFilter((_filter) => ({ ..._filter, status: "read" }))
-                  }
-                />
-                <label htmlFor="read">Read</label>
-              </div>
+              <fieldset>
+                <legend>General</legend>
+                <label htmlFor="favorite">
+                  <input
+                    type={"checkbox"}
+                    id={"favorite"}
+                    checked={filter?.favorite === true}
+                    onClick={() =>
+                      setFilter((_filter) => ({
+                        ..._filter,
+                        favorite: !_filter.favorite,
+                      }))
+                    }
+                    name="favorite"
+                  />
+                  Favorite
+                </label>
+              </fieldset>
+              <fieldset>
+                <legend>Status</legend>
+                <div>
+                  <input
+                    type="radio"
+                    id="read"
+                    name="status"
+                    value="read"
+                    checked={filter?.status === "read"}
+                    onClick={() =>
+                      setFilter((_filter) => ({ ..._filter, status: "read" }))
+                    }
+                  />
+                  <label htmlFor="read">Read</label>
+                </div>
 
-              <div>
-                <input
-                  type="radio"
-                  id="unread"
-                  name="status"
-                  value="unread"
-                  checked={filter?.status === "unread"}
-                  onClick={() =>
-                    setFilter((_filter) => ({ ..._filter, status: "unread" }))
-                  }
-                />
-                <label htmlFor="unread">Unread</label>
-              </div>
+                <div>
+                  <input
+                    type="radio"
+                    id="unread"
+                    name="status"
+                    value="unread"
+                    checked={filter?.status === "unread"}
+                    onClick={() =>
+                      setFilter((_filter) => ({ ..._filter, status: "unread" }))
+                    }
+                  />
+                  <label htmlFor="unread">Unread</label>
+                </div>
 
-              <div>
-                <input
-                  type="radio"
-                  id="all"
-                  name="status"
-                  value="all"
-                  checked={filter?.status === null}
-                  onClick={() =>
-                    setFilter((_filter) => ({ ..._filter, status: null }))
-                  }
-                />
-                <label htmlFor="all">All</label>
-              </div>
-            </fieldset>
-            <fieldset className="publication-year-filter">
-              <legend>Publication year</legend>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={filter.publicationYears === null}
-                  ref={(input) => {
-                    if (input) input.indeterminate = filter.publicationYears !== null && filter.publicationYears.length > 0;
-                  }}
-                  onChange={(event) => {
-                    const checked = event.target.checked;
-                    setFilter((current) => ({ ...current, publicationYears: checked ? null : [] }));
-                  }}
-                />
-                All
-              </label>
-              {publicationYears.map((year) => (
-                <label key={year}>
+                <div>
+                  <input
+                    type="radio"
+                    id="all"
+                    name="status"
+                    value="all"
+                    checked={filter?.status === null}
+                    onClick={() =>
+                      setFilter((_filter) => ({ ..._filter, status: null }))
+                    }
+                  />
+                  <label htmlFor="all">All</label>
+                </div>
+              </fieldset>
+              <fieldset className="publication-year-filter">
+                <legend>Publication year</legend>
+                <label>
                   <input
                     type="checkbox"
-                    value={year}
-                    checked={filter.publicationYears === null || filter.publicationYears.includes(year)}
+                    checked={filter.publicationYears === null}
+                    ref={(input) => {
+                      if (input)
+                        input.indeterminate =
+                          filter.publicationYears !== null &&
+                          filter.publicationYears.length > 0;
+                    }}
                     onChange={(event) => {
                       const checked = event.target.checked;
-                      setFilter((current) => {
-                        const selected = current.publicationYears ?? publicationYears;
-                        const next = checked
-                          ? [...selected, year]
-                          : selected.filter((value) => value !== year);
-                        return {
-                          ...current,
-                          publicationYears: next.length === publicationYears.length ? null : next,
-                        };
-                      });
+                      setFilter((current) => ({
+                        ...current,
+                        publicationYears: checked ? null : [],
+                      }));
                     }}
                   />
-                  {year === "undefined" ? "Undefined Year" : year}
+                  All
                 </label>
-              ))}
-            </fieldset>
+                {publicationYears.map((year) => (
+                  <label key={year}>
+                    <input
+                      type="checkbox"
+                      value={year}
+                      checked={
+                        filter.publicationYears === null ||
+                        filter.publicationYears.includes(year)
+                      }
+                      onChange={(event) => {
+                        const checked = event.target.checked;
+                        setFilter((current) => {
+                          const selected =
+                            current.publicationYears ?? publicationYears;
+                          const next = checked
+                            ? [...selected, year]
+                            : selected.filter((value) => value !== year);
+                          return {
+                            ...current,
+                            publicationYears:
+                              next.length === publicationYears.length
+                                ? null
+                                : next,
+                          };
+                        });
+                      }}
+                    />
+                    {year === "undefined" ? "Undefined Year" : year}
+                  </label>
+                ))}
+              </fieldset>
             </div>
             <fieldset className="tags-filter">
               <legend>Tags</legend>

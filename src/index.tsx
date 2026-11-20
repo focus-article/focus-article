@@ -7,8 +7,7 @@ const apiPort =
   process.env.BUN_PUBLIC_API_PORT ??
   "3001";
 const apiHost = process.env.BUN_PUBLIC_API_HOST ?? "localhost";
-const apiUrl =
-  process.env.BUN_PUBLIC_API_URL ?? `http://${apiHost}:${apiPort}`;
+const apiUrl = process.env.BUN_PUBLIC_API_URL ?? `http://${apiHost}:${apiPort}`;
 
 const server = serve({
   routes: {

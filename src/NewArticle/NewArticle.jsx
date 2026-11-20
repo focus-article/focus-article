@@ -55,7 +55,6 @@ export const NewArticle = ({ onClose, onChange }) => {
     return key;
   }
 
-
   return (
     <div className="new_article">
       <div className="header">
@@ -106,21 +105,23 @@ export const NewArticle = ({ onClose, onChange }) => {
                           tags={data.tags}
                           draft={tagDraft}
                           onDraftChange={setTagDraft}
-                          onChange={(tags) => setData((current) => ({ ...current, tags }))}
+                          onChange={(tags) =>
+                            setData((current) => ({ ...current, tags }))
+                          }
                         />
                       ) : (
-                      <input
-                        type="text"
-                        name={key}
-                        value={data[key]}
-                        disabled={isDisabledInput(key)}
-                        onChange={(event) => {
-                          setData((_data) => ({
-                            ..._data,
-                            [key]: event?.target?.value,
-                          }));
-                        }}
-                      />
+                        <input
+                          type="text"
+                          name={key}
+                          value={data[key]}
+                          disabled={isDisabledInput(key)}
+                          onChange={(event) => {
+                            setData((_data) => ({
+                              ..._data,
+                              [key]: event?.target?.value,
+                            }));
+                          }}
+                        />
                       )}
                     </td>
                   </tr>
