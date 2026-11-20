@@ -3,7 +3,7 @@
 Front-end implementation of Focus Article: A minimal self-storage project to save your favorite articles without any distraction.
 
 <p align="center">
-  <img alt="Focus Article UI" src="./img.png">
+  <img alt="Focus Article — dark theme with the updated logo, account button and article cards" src="./docs/images/ui-preview.png">
 </p>
 
 ## Prerequisites
