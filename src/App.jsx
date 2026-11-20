@@ -11,7 +11,7 @@ function App() {
   return (
     <>
       <div className="app">
-        {route !== "home" && <Header />}
+        <Header />
         {route === "home" && (
           <Articles onClickNew={() => setRoute("new_article")} />
         )}

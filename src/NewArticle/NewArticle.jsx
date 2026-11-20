@@ -77,7 +77,7 @@ export const NewArticle = ({ onClose, onChange }) => {
         </button>
       </div>
       <div className="body">
-        <form onSubmit={handleOnSubmit}>
+        <form className="article-url-form" onSubmit={handleOnSubmit}>
           <label htmlFor="url">URL</label>
           <input
             type="text"

@@ -71,3 +71,24 @@ th {
   text-align: left;
   padding: 8px;
 }
+
+.new_article .article-url-form {
+  align-items: center;
+}
+
+.new_article .article-url-form > input {
+  flex: 1 1 0;
+  width: 0;
+  min-width: 0;
+  height: 50px;
+}
+
+.new_article .article-url-form > button {
+  flex: none;
+  width: 50px;
+  min-width: 50px;
+  max-width: 50px;
+  height: 50px;
+  min-height: 50px;
+  max-height: 50px;
+}
